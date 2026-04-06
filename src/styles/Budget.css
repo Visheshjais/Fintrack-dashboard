@@ -1,0 +1,66 @@
+/* ============================================================
+   src/styles/Budget.css — Emerald theme
+   ============================================================ */
+.budget-summary-strip {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+  gap:var(--space-md); margin-bottom:var(--space-lg);
+}
+.budget-strip-card {
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:var(--radius-lg); padding:var(--space-md); text-align:center;
+  animation:fadeInUp 0.35s ease both; transition:border-color var(--transition-fast);
+}
+.budget-strip-card:hover { border-color:rgba(16,185,129,0.2); }
+.budget-strip-label { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; }
+.budget-strip-value { font-family:var(--font-mono); font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-top:4px; }
+.budget-strip-sub   { font-size:0.7rem; color:var(--text-muted); margin-top:2px; }
+
+.budget-page-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:var(--space-lg); flex-wrap:wrap; gap:var(--space-md);
+}
+.budget-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:var(--space-md);
+}
+.budget-category-card {
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:var(--radius-lg); padding:var(--space-md) var(--space-lg);
+  transition:all var(--transition-fast); animation:fadeInUp 0.35s ease both;
+}
+.budget-category-card:hover { border-color:rgba(16,185,129,0.2); box-shadow:var(--shadow-card); }
+.budget-category-card.over-budget { border-color:rgba(239,68,68,0.3); background:rgba(239,68,68,0.03); }
+
+.budget-cat-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-md); }
+.budget-cat-left   { display:flex; align-items:center; gap:10px; }
+.budget-cat-icon   { width:34px; height:34px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+.budget-cat-name   { font-size:0.86rem; font-weight:700; color:var(--text-primary); }
+.budget-cat-type   { font-size:0.67rem; color:var(--text-muted); }
+
+.budget-over-badge { background:rgba(239,68,68,0.12); color:var(--accent-red); border:1px solid rgba(239,68,68,0.2); font-size:0.63rem; font-weight:700; padding:3px 8px; border-radius:var(--radius-full); }
+.budget-ok-badge   { background:rgba(16,185,129,0.1); color:var(--accent-primary-2); border:1px solid rgba(16,185,129,0.2); font-size:0.63rem; font-weight:700; padding:3px 8px; border-radius:var(--radius-full); }
+
+.budget-amounts    { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+.budget-spent      { font-family:var(--font-mono); font-size:0.98rem; font-weight:700; }
+.budget-limit      { font-size:0.7rem; color:var(--text-muted); }
+.budget-limit span { font-family:var(--font-mono); }
+
+.budget-bar-track  { height:7px; border-radius:99px; background:var(--bg-secondary); overflow:hidden; margin-bottom:6px; }
+.budget-bar-fill   { height:100%; border-radius:99px; transition:width 0.6s cubic-bezier(0.4,0,0.2,1); will-change:width; }
+.budget-bar-info   { display:flex; justify-content:space-between; font-size:0.69rem; color:var(--text-muted); }
+
+.budget-edit-row   { display:flex; align-items:center; gap:var(--space-sm); margin-top:var(--space-sm); padding-top:var(--space-sm); border-top:1px solid var(--border); }
+.budget-edit-input {
+  flex:1; padding:6px 10px; border-radius:var(--radius-sm);
+  border:1px solid var(--border); background:var(--bg-input);
+  color:var(--text-primary); font-family:var(--font-mono); font-size:0.82rem;
+}
+.budget-edit-input:focus { outline:none; border-color:var(--accent-primary); box-shadow:0 0 0 3px rgba(16,185,129,0.12); }
+
+.budget-viewer-notice {
+  background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.16);
+  border-radius:var(--radius-md); padding:10px 14px;
+  font-size:0.79rem; color:var(--accent-primary-2);
+  margin-bottom:var(--space-md); display:flex; align-items:center; gap:8px;
+}
+
+@media (max-width:640px) { .budget-grid { grid-template-columns:1fr; } }

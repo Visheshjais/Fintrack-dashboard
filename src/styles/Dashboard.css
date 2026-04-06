@@ -1,0 +1,174 @@
+/* ============================================================
+   src/styles/Dashboard.css — Cards, charts, recent list
+   Emerald/Navy theme. Animations via will-change + transform.
+   ============================================================ */
+
+/* ─── SUMMARY CARDS ─── */
+.summary-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap:                   var(--space-md);
+  margin-bottom:         var(--space-lg);
+}
+.summary-card {
+  background:    var(--bg-card);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding:       var(--space-lg);
+  position:      relative; overflow: hidden;
+  transition:    transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  will-change:   transform;
+  animation:     fadeInUp 0.4s ease both;
+}
+.summary-card:nth-child(1) { animation-delay: 0ms; }
+.summary-card:nth-child(2) { animation-delay: 60ms; }
+.summary-card:nth-child(3) { animation-delay: 120ms; }
+.summary-card:nth-child(4) { animation-delay: 180ms; }
+
+.summary-card:hover {
+  transform:    translateY(-2px);
+  box-shadow:   var(--shadow-card);
+}
+
+/* Top accent bar — emerald themed */
+.summary-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.summary-card.balance::before  { background: var(--gradient-primary); }
+.summary-card.income::before   { background: var(--gradient-green);   }
+.summary-card.expense::before  { background: var(--gradient-red);     }
+.summary-card.savings::before  { background: var(--gradient-gold);    }
+
+/* Hover border glow per card type */
+.summary-card.balance:hover  { border-color: rgba(16,185,129,0.28); }
+.summary-card.income:hover   { border-color: rgba(34,197,94,0.28);  }
+.summary-card.expense:hover  { border-color: rgba(239,68,68,0.28);  }
+.summary-card.savings:hover  { border-color: rgba(245,158,11,0.28); }
+
+.card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: var(--space-md);
+}
+.card-icon-wrap {
+  width: 40px; height: 40px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.card-icon-wrap.blue   { background: rgba(16,185,129,0.15); }
+.card-icon-wrap.green  { background: rgba(34,197,94,0.15);  }
+.card-icon-wrap.red    { background: rgba(239,68,68,0.15);   }
+.card-icon-wrap.yellow { background: rgba(245,158,11,0.15);  }
+
+.card-trend {
+  font-size: 0.68rem; font-weight: 700;
+  padding: 3px 8px; border-radius: var(--radius-full);
+}
+.card-trend.up   { background: rgba(34,197,94,0.12);  color: var(--accent-green); }
+.card-trend.down { background: rgba(239,68,68,0.12);  color: var(--accent-red);   }
+.card-trend.flat { background: var(--bg-secondary);   color: var(--text-muted); }
+
+.card-label {
+  font-size:0.7rem; font-weight:700; color:var(--text-muted);
+  text-transform:uppercase; letter-spacing:0.09em; margin-bottom:var(--space-sm);
+}
+.card-value {
+  font-size:1.6rem; font-weight:800; line-height:1.1;
+  margin-bottom:6px; letter-spacing:-0.02em;
+}
+.card-value.positive { color: var(--accent-green); }
+.card-value.negative { color: var(--accent-red);   }
+.card-value.neutral  { color: var(--text-primary);  }
+.card-sub { font-size:0.74rem; color:var(--text-muted); display:flex; align-items:center; gap:5px; }
+
+/* ─── CHARTS GRID ─── */
+.charts-grid {
+  display:               grid;
+  grid-template-columns: 2fr 1fr;
+  gap:                   var(--space-md);
+  margin-bottom:         var(--space-lg);
+}
+
+/* ─── CHART CARD ─── */
+.chart-card {
+  background:    var(--bg-card);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding:       var(--space-lg);
+  transition:    border-color var(--transition-fast), box-shadow var(--transition-fast);
+  animation:     fadeInUp 0.4s ease 0.15s both;
+}
+.chart-card:hover { border-color: rgba(16,185,129,0.18); box-shadow: var(--shadow-card); }
+.chart-card-header {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  margin-bottom:var(--space-md); flex-wrap:wrap; gap:var(--space-sm);
+}
+.chart-title    { font-size:0.92rem; font-weight:700; color:var(--text-primary); }
+.chart-subtitle { font-size:0.73rem; color:var(--text-muted); margin-top:2px; }
+.chart-legend   { display:flex; align-items:center; gap:var(--space-md); flex-wrap:wrap; }
+.legend-item    { display:flex; align-items:center; gap:6px; font-size:0.71rem; color:var(--text-secondary); }
+.legend-dot     { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+/* Donut legend */
+.pie-legend { display:flex; flex-direction:column; gap:5px; margin-top:var(--space-md); }
+.pie-legend-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:5px 0; border-bottom:1px solid var(--border); cursor:pointer;
+  transition: opacity var(--transition-fast);
+}
+.pie-legend-item:last-child { border-bottom:none; }
+.pie-legend-left { display:flex; align-items:center; gap:8px; }
+.pie-color-dot   { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.pie-legend-value{ font-family:var(--font-mono); font-size:0.77rem; color:var(--text-primary); }
+
+/* ─── HEALTH SCORE CARD ─── */
+.health-score-card {
+  background:    var(--bg-card);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding:       var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-lg);
+  display:       flex; align-items: center;
+  gap:           var(--space-xl); flex-wrap: wrap;
+  animation:     fadeInUp 0.4s ease 0.05s both;
+  transition:    border-color var(--transition-fast);
+}
+.health-score-card:hover { border-color: rgba(16,185,129,0.2); }
+.health-score-ring { position:relative; width:100px; height:100px; flex-shrink:0; }
+.health-score-ring svg { display:block; }
+.health-score-ring-bg   { fill:none; stroke:var(--border); stroke-width:8; }
+.health-score-ring-fill { fill:none; stroke-width:8; stroke-linecap:round; will-change:stroke-dashoffset; }
+.health-score-num {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.health-score-big  { font-size:1.45rem; font-weight:800; line-height:1; font-family:var(--font-mono); }
+.health-score-label{ font-size:0.58rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.09em; }
+.health-facts      { flex:1; min-width:200px; }
+.health-facts-title{ font-size:0.92rem; font-weight:700; color:var(--text-primary); margin-bottom:var(--space-sm); }
+.health-facts-list { display:flex; flex-direction:column; gap:5px; }
+.health-fact-row   { display:flex; align-items:center; gap:8px; font-size:0.79rem; color:var(--text-secondary); }
+
+/* ─── RECENT TRANSACTIONS ─── */
+.recent-section { animation: fadeInUp 0.4s ease 0.3s both; }
+.recent-tx-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:11px var(--space-sm); border-bottom:1px solid var(--border);
+  gap:var(--space-md); border-radius:var(--radius-sm);
+  transition:background var(--transition-fast);
+}
+.recent-tx-row:last-child { border-bottom:none; }
+.recent-tx-row:hover      { background: var(--bg-secondary); }
+.tx-dot  { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.tx-desc { font-size:0.875rem; font-weight:500; color:var(--text-primary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.tx-meta { font-size:0.71rem; color:var(--text-muted); margin-top:2px; }
+.tx-amount { font-family:var(--font-mono); font-size:0.86rem; font-weight:600; flex-shrink:0; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) { .charts-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px)  {
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-value   { font-size: 1.25rem; }
+}
+@media (max-width: 380px)  { .summary-grid { grid-template-columns: 1fr; } }
