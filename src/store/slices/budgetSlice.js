@@ -4,7 +4,7 @@
    Users (Admin) can set monthly spending limits per category.
    ============================================================ */
 import { createSlice } from "@reduxjs/toolkit";
-import { CATEGORIES } from "../../data/mockData";
+
 
 /* ── Default budgets (sensible starting values) ── */
 const DEFAULT_BUDGETS = {

@@ -6,7 +6,7 @@
 import React, { useState } from "react";
 import {
   ResponsiveContainer, ComposedChart, Area, Line,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  XAxis, YAxis, CartesianGrid, Tooltip ,
 } from "recharts";
 import { useSelector } from "react-redux";
 import { selectTransactions } from "../../store/slices/transactionsSlice";

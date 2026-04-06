@@ -24,7 +24,7 @@ const WelcomeBanner = memo(function WelcomeBanner() {
   const transactions = useSelector(selectTransactions);
   const isAdmin      = role === ROLES.ADMIN;
 
-  const { totalIncome, totalExpenses, balance, savingsRate } =
+  const { balance, savingsRate } =
     computeSummary(transactions);
 
   const greeting = getGreeting();
