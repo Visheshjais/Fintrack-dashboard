@@ -162,7 +162,7 @@ export function buildMonthlyTrend(transactions) {
 export function computeHealthScore(transactions, budgetLimits) {
   if (transactions.length === 0) return 0;
 
-  const { balance, savingsRate } = computeSummary(transactions);
+  const { savingsRate } = computeSummary(transactions);
 
   // 1. Savings score (0–40): scale savingsRate 0-30% to 0-40pts
   const savingsScore = Math.min(40, (savingsRate / 30) * 40);
